@@ -1,1 +1,1 @@
-@extends('admin.master.layout')
+@extends('admin.template.master.layout')

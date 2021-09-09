@@ -17,7 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+
+
+Route::group(['prefix'=>'admin','as'=>'admin.','namespace' => 'App\\Http\\Controllers\\Admin'], function(){
+    Route::get('/',  'DashboardController@index');
+    Route::resource('/exams', 'ExamsController');
 });
+
+
+
+
 
