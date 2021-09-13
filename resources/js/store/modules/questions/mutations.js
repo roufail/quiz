@@ -1,14 +1,13 @@
 export default {
-    setMainQuestions(state, mainQuestions) {
-        state.mainQuestions = mainQuestions.filter(function(el) {
-            return el != undefined;
-        });
-    },
+    saveExamQuestions(state, questions) {
 
-    setQuestions(state, questions) {
+    },
+    getExamQuestions(state,questions){
         state.questions = questions;
     },
-
+    delete_question(state,index){
+        state.questions.splice(index,1);
+    },
     addQuestion(state, question) {
         let mindex = state.mainQuestions
             .map(question => question.id)
@@ -33,36 +32,4 @@ export default {
             .indexOf(question.id);
         state.mainQuestions[mindex].questions[index] = question;
     },
-    updateQuestionOrder(state, data) {
-        // let index = state.questions.map(newquestion => newquestion.id ).indexOf(data.question.id);
-        let index = state.mainQuestions[data.mindex].questions
-            .map(newquestion => newquestion.id)
-            .indexOf(data.question.id);
-        state.mainQuestions[data.mindex].questions[index].order =
-            data.index + 1;
-    },
-    addMainQuestion(state, question) {
-        state.mainQuestions.push(question);
-    },
-    updateMainQuestionOrder(state, data) {
-        let index = state.mainQuestions
-            .map(newquestion => newquestion.id)
-            .indexOf(data.question.id);
-        state.mainQuestions[index].order = data.index + 1;
-    },
-
-    updateMainQuestion(state, question) {
-        let index = state.mainQuestions
-            .map(newquestion => newquestion.id)
-            .indexOf(question.id);
-        state.mainQuestions[index] = question;
-    },
-
-    deleteMainQuestion(state, question) {
-        let index = state.mainQuestions
-            .map(newquestion => newquestion.id)
-            .indexOf(question.main_question_id);
-        state.mainQuestions.splice(index, 1);
-    },
-
 };

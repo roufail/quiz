@@ -8,5 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
-    protected $fillable = [];
+    protected $fillable = ['title'];
+
+    function questions() {
+        return $this->hasMany(Question::class);
+    }
+
+    function results() {
+        return $this->hasMany(Result::class);
+    }
+    
+
+    
 }

@@ -19,6 +19,7 @@ class CreateResultsTable extends Migration
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->unsignedBigInteger('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->string('answer');
             $table->boolean('right');
             $table->softDeletes();
             $table->timestamps();

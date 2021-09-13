@@ -1,24 +1,14 @@
 import questions from "../../../api/questions";
 
 export default {
-    getMainQuestions({ commit }, params) {
+    
+    saveExamQuestions({ commit }, params) {
         return new Promise((resolve, reject) => {
             questions
-                .getMainQuestions(params)
+                .saveExamQuestions(params)
                 .then(response => {
-                    commit("setMainQuestions", response.data.questions);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    },
-    addMainQuestion({ commit }, params) {
-        return new Promise((resolve, reject) => {
-            questions
-                .addMainQuestion(params)
-                .then(response => {
-                    commit("addMainQuestion", response.data.mainquestion);
+                    
+                    commit("saveExamQuestions", response.data.question);
                     resolve(response);
                 })
                 .catch(error => {
@@ -26,12 +16,12 @@ export default {
                 });
         });
     },
-    updateMainQuestion({ commit }, params) {
+    getExamQuestions({commit},params) {
         return new Promise((resolve, reject) => {
             questions
-                .updateMainQuestion(params)
+                .getExamQuestions(params)
                 .then(response => {
-                    commit("updateMainQuestion", response.data.question);
+                    commit("getExamQuestions", response.data.questions.questions);
                     resolve(response);
                 })
                 .catch(error => {
@@ -40,31 +30,6 @@ export default {
         });
     },
 
-    getQuestions({ commit }, params) {
-        return new Promise((resolve, reject) => {
-            questions
-                .getQuestions(params)
-                .then(response => {
-                    commit("setQuestions", response.data.questions);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    },
-    addQuestion({ commit }, params) {
-        return new Promise((resolve, reject) => {
-            questions
-                .addQuestion(params)
-                .then(response => {
-                    commit("addQuestion", response.data.question);
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    },
     updateQuestion({ commit }, params) {
         return new Promise((resolve, reject) => {
             questions
@@ -79,18 +44,7 @@ export default {
         });
     },
 
-    updateQuestionOrder({ commit }, params) {
-        return new Promise((resolve, reject) => {
-            questions
-                .updateQuestionOrder(params)
-                .then(response => {
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    },
+
 
     deleteQuestion({ commit }, params) {
         return new Promise((resolve, reject) => {
@@ -105,19 +59,7 @@ export default {
                 });
         });
     },
-    deleteMainQuestion({ commit }, params) {
-        return new Promise((resolve, reject) => {
-            questions
-                .deleteMainQuestion(params)
-                .then(response => {
-                    commit("deleteMainQuestion", response.data);
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    },
+    
     updateQuestionOrder({ commit }, params) {
         return new Promise((resolve, reject) => {
             questions
@@ -130,17 +72,4 @@ export default {
                 });
         });
     },
-
-    updateMainQuestionOrder({ commit }, params) {
-        return new Promise((resolve, reject) => {
-            questions
-                .updateMainQuestionOrder(params)
-                .then(response => {
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    }
 };

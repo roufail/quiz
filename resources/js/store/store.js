@@ -3,9 +3,7 @@ import Vuex from "vuex";
 import VuexPersist from "vuex-persist";
 
 import questions from "./modules/questions";
-import categories from "./modules/categories";
 import exams from "./modules/exams";
-import courses from "./modules/courses";
 Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== "production";
 
@@ -20,9 +18,7 @@ export const strict = false;
 export default new Vuex.Store({
     modules: {
         questions,
-        categories,
         exams,
-        courses
     },
     plugins: [VuexPersists.plugin],
     strict: debug

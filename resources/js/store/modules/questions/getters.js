@@ -1,8 +1,5 @@
 export default {
-    allQuestions(state) {
+    Questions(state) {
         return state.questions;
     },
-    allMainQuestions(state) {
-        return state.mainQuestions;
-    }
 }

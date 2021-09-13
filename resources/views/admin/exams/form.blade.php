@@ -4,7 +4,8 @@
 @endpush
 @section('content')
 <div class="col-md-12">
-    @include('admin.template.components.alerts')
+    {{-- @include('admin.template.components.alerts') --}}
+
 
 
     <form role="form" enctype="multipart/form-data"
@@ -33,6 +34,12 @@
         </div>
         <!-- /.card-body -->
 
+        @if(!$exam->id)
+        <div id="app">
+            <exam-questions :id="{{ $exam->id }}"></exam-questions>
+        </div>
+        @endif
+    
         <div class="card-footer">
             <button type="submit" class="btn btn-primary float-left">save</button>
         </div>
@@ -41,7 +48,7 @@
 
     @if($exam->id)
     <div id="app">
-        <exam-questions :id="{{ $exam->id }}"></exam-questions>
+        <exam-questions :exam_id="{{ $exam->id }}"></exam-questions>
     </div>
     @endif
 </div>
@@ -51,6 +58,6 @@
 @endsection
 
 @push('extra-js')
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('admin-assets/js/app.js') }}"></script>
 @endpush
 

@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('exam_id');
             $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->text('question');
+            $table->text('true_answer');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -19,8 +19,13 @@ Route::get('/', function () {
 
 
 
+
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace' => 'App\\Http\\Controllers\\Admin'], function(){
     Route::get('/',  'DashboardController@index');
+    Route::post('/exams/save-exam-questions', 'ExamsController@save_exam_questions');
+    Route::get('/exams/get-exam-questions/{exam}', 'ExamsController@get_exam_questions');
+    Route::post('/exams/{exam}/save-answers', 'ExamsController@save_exam_answers')->name('exams.save_exam_answers');
+
     Route::resource('/exams', 'ExamsController');
 });
 

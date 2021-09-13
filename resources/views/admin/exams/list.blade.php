@@ -21,10 +21,8 @@
                 <tbody>
                     <tr>
                         <th style="width: 10px">#</th>
-                        <th>الامتحان</th>
-                        <th>بدايه الامتحان</th>
-                        <th>نهايه الامتحان</th>
-                        <th>خيارات</th>
+                        <th>exam</th>
+                        <th>choices</th>
                     </tr>
                     @foreach ($exams as $exam)
                     <tr>
@@ -35,33 +33,30 @@
                             {{ $exam->title }}
                         </td>
 
-                        <td>
-                            {{ $exam->doctor }}
-                        </td>
+
 
                         <td>
-                            {{ date('Y-m-d',strtotime($exam->started_at)) }}
-                        </td>
 
-                        <td>
-                            {{ date('Y-m-d',strtotime($exam->ended_at)) }}
-                        </td>
-                        <td>
 
-                            <div class="float-right">
+
+                            <div class="float-left mr-3">
                                 <a href="{{ route('admin.exams.edit',$exam->id) }}"><i
-                                        class="fa fa-edit"></i>&nbsp;تعديل</a>
+                                        class="fa fa-edit"></i>&nbsp;edit</a>
                             </div>
 
-                            <div class="float-right mr-3">
+
+                            <div class="float-left mr-3">
                                 <form style="display:inline-flex" method="post"
                                     action="{{ route('admin.exams.destroy',$exam->id) }}">
                                     @csrf
                                     @method('delete')
-                                    <a class="delete-btn" href="javascript:;"><i class="fa fa-trash"></i>&nbsp;حذف</a>
+                                    <a class="delete-btn" href="javascript:;"><i class="fa fa-trash"></i>&nbsp;delete</a>
                                 </form>
                             </div>
 
+                            <div class="float-left">
+                                <a href="{{ route('admin.exams.show',$exam->id) }}"><i class="fas fa-vial"></i>&nbsp;take exam</a>
+                            </div>
 
 
                         </td>
@@ -100,14 +95,14 @@
             event.preventDefault();
 
             Swal.fire({
-                title: 'هل انت متأكد ؟',
-                text: "لايمكنك التراجع عن هذا الاجراء.",
+                title: 'are you sure ?',
+                text: "you can't retrive this proccess.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'نعم احذفه',
-                cancelButtonText: 'تراجع'
+                confirmButtonText: 'yes delete it',
+                cancelButtonText: 'cancel'
                 }).then((result) => {
                 if (result.value) {
                     $(this).parent().submit();
@@ -123,5 +118,5 @@
 @endsection
 
 @push('extra-js')
-<script src="{{ asset('js/sweetalert.js') }}"></script>
+<script src="{{ asset('admin-assets/js/sweetalert2.js') }}"></script>
 @endpush
